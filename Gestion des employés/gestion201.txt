@@ -1,0 +1,110 @@
+import pymongo
+
+serveur="mongodb://localhost:27017/"
+client=pymongo.MongoClient(serveur)
+bd=client['TP_201']
+
+col_cpt=bd["comptes"]
+col_dept=bd["Deprtements"]
+
+log=input("saisir le nom utilisateur")
+pw=input("saisir le mot de passe")
+
+filtre={"login" : log , "Password" : pw}
+curseur=col_cpt.find( filtre , {})
+table=list(curseur)
+if len(table)==0:
+    print("Le login ou mot de passe saisis sont incorrects")
+else:
+    choix=0
+    while int(choix) !=4:
+        print("1-------------gestion des departement")
+        print("2-------------gestion des Revenues")
+        print("3-------------gestion des Employés")
+        print("4------------- Quitter le menu de l'application")
+
+        choix=input("salsir votre choix 1 à 3, tappez 4 pour quitter l'applation")
+        if int(choix)==1:
+            choix1=0
+            while int(choix1) !=6:
+                print("*******Gestion des dept*********")
+                print("1---------Ajouter un departement")
+                print("2---------Lister les departements")
+                print("3---------Rechcreher un departement")
+                print("4---------Modifier un departement")
+                print("5---------Supprimer un departement")
+                print("6---------revenir au menu global")
+
+                choix1 = input("salsir votre choix 1 à 5, tappez 6 pour quitter l'applation")
+                if int(choix1)==1:
+                    code = input("saisir le code de département")
+                    nom = input("saisir le nom de département")
+                    ville = input("saisir la ville de département")
+
+                    col_dept.insert_one({"Code_Dept": int(code) , "Nom_Dept": nom , "Ville_Dept": ville })
+                if int(choix1)==2:
+
+                    curseur=col_dept.find();
+                    print("****************************************************")
+                    print("Codedept \t  nom dept  \t  ville")
+                    print("****************************************************")
+                    for dept in curseur:
+                        print(dept["Code_Dept"] , "\t" ,  dept["Nom_Dept"] , "\t" , dept["Ville_Dept"])
+                    print("****************************************************")
+                if int(choix1)==3:
+                    print("recherche")
+                if int(choix1)==4:
+                    code=input("saisir le code du departement à modifier")
+                    filtre={"Code_Dept": int(code)}
+                    curseur=col_dept.find(filtre , {})
+                    table=list(curseur)
+                    if len(table)==0:
+                        print("Le code saisi n'existe pas dans la base de donénes")
+                    else:
+                        nom = input("saisir le nouveau  nom de département")
+                        ville = input("saisir la nouvelle ville de département")
+                        new_val={"$set":{"Nom_Dept": nom , "Ville_Dept": ville}}
+                        resultat=col_dept.update_one(filtre, new_val)
+                        if resultat.modified_count==0:
+                            print("La modification a échoué")
+                        else:
+                            print("la modification a réussi")
+                if int(choix1)==5:
+                    code = input("saisir le code du departement à supprimer")
+                    filtre = {"Code_Dept": int(code)}
+                    curseur = col_dept.find(filtre, {})
+                    table = list(curseur)
+                    if len(table) == 0:
+                        print("Le code saisi n'existe pas dans la base de donénes")
+                    else:
+                        reponse=input("Confirmation: Voulez-vous vraiment supprimer? O/N")
+                        if reponse=="O":
+                            resultat=col_dept.delete_one(filtre)
+                            if resultat.deleted_count==0:
+                                print("La suppression a échoué")
+                            else:
+                                print("La suppression a réussi")
+                        else:
+                            print("Vous avez annulé la suppression")
+
+
+
+        if int(choix)==2:
+            print("*******Gestion des rubriques *********")
+
+            print("1---------Ajouter une rubrique")
+            print("2---------Lister les rubrique")
+            print("3---------Rechcreher une rubriques")
+            print("4---------Modifier une rubrique")
+            print("5---------Supprimer une rubrique")
+            print("6---------revenir au menu global")
+        if int(choix)==3:
+            print("*******Gestion des employés *********")
+            print("1---------Ajouter un employé")
+            print("2---------Lister les employés")
+            print("3---------Rechcreher un employé") #Afficher aussi son salaire
+            print("4---------Modifier un employé")
+            print("5---------Supprimer un employé")
+            print("6---------Saisir le salsire d' un employé")
+            print("7---------Lister les employés d'un departement donné")
+            print("8---------revenir au menu global")

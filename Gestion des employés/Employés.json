@@ -1,0 +1,36 @@
+[{
+  "_id": 10,
+  "Nom": "abrar",
+  "prenom": "Med",
+  "Age": 26,
+  "Fonction": "developpeur",
+  "Departement": "NTIC",
+  "CIN": "J1111",
+  "Revenues": [
+    {
+      "Rubrique": "salaire",
+      "Monatnt": 6000
+    },
+    {
+      "Rubrique": "prime",
+      "Monatnt": 1000
+    }
+  ]
+},{
+  "_id": 20,
+  "Nom": "Ahssine",
+  "prenom": "Yassine",
+  "Age": 26,
+  "Fonction": "Graphiste",
+  "Departement": "NTIC",
+  "Revenues": [
+    {
+      "Rubrique": "salaire",
+      "Monatnt": 6500
+    },
+    {
+      "Rubrique": "prime",
+      "Monatnt": 0
+    }
+  ]
+}]

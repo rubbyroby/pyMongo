@@ -1,0 +1,17 @@
+code= input("saisir le code ")
+
+filtre={"_id":int(code)}
+
+input("1------salaire")
+input("2------prime")
+input("3------commission")
+input("4------Autre indemnité")
+
+rubrique=input("saisir la rubrique")
+
+
+montant=input("saisir le montant")
+new_val={ "$push" : { "Revenues" :{"Rubrique" : rubrique , "Monatnt": montant}
+        } }
+col_emp.update_one(filtre, new_val)
+print("modif ok")

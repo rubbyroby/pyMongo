@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "63a30b9d25c7efc4f5322add"
+  },
+  "Code_Dept": 1,
+  "Nom_Dept": "NTIC",
+  "Ville_Dept": "agadir"
+},{
+  "_id": {
+    "$oid": "63a30bb225c7efc4f5322ade"
+  },
+  "Code_Dept": 2,
+  "Nom_Dept": "SAV ",
+  "Ville_Dept": "tanger"
+},{
+  "_id": {
+    "$oid": "63a30d750126ca030db8b03c"
+  },
+  "Code_Dept": 3,
+  "Nom_Dept": "technique",
+  "Ville_Dept": "tantan"
+}]

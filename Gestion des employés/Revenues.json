@@ -1,0 +1,13 @@
+[{
+  "_id": "sal",
+  "rubrique": "salsire"
+},{
+  "_id": "comm",
+  "rubrique": "commission"
+},{
+  "_id": "prime",
+  "rubrique": "prime"
+},{
+  "_id": "ind",
+  "rubrique": "Indemnité"
+}]
